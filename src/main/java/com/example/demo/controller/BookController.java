@@ -26,11 +26,9 @@ public class BookController {
 	@PostMapping("/book/deleteById")
 	public String deleteByInput(@ModelAttribute Book book) {
 		Optional<Book> existingBook = bookRepository.findById(book.getId());
-		if(existingBook.isPresent()){
+		if(existingBook.isPresent())
 			bookRepository.delete(book);
-		}
-
+	
 			return "redirect:/";
 	}
-	
 }

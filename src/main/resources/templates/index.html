@@ -110,7 +110,7 @@
 	                </div>
 	                <div class="modal-footer">
 	                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
-	                    <input type="submit" class="btn btn-primary" th:onclick="/book/add" value="追加">
+	                    <input type="submit" class="btn btn-primary" th:onclick="@{/book/add}" value="追加">
 	                </div>
                	</form>
             </div>
@@ -135,7 +135,7 @@
 	                </div>
 	                <div class="modal-footer">
 	                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
-	                    <input type="submit" class="btn btn-primary" th:onClick="/book/deleteById" value="削除">
+	                    <input type="submit" class="btn btn-primary" th:onClick="@{/book/deleteById}" value="削除">
 	                </div>
                	</form>
             </div>
