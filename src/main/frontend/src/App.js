@@ -1,41 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
-
+import Home from './Home';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import BookList from './BookList';
 
 const App = () => {
-
-  const [books, setBooks] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    setLoading(true);
-
-    fetch('/api/book/')
-      .then(response => response.json())
-      .then(data => {
-        setBooks(data);
-        setLoading(false);
-      })
-  }, []);
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <div className="App-intro">
-          <h2>Book List</h2>
-          {books.map(book =>
-            <div key={book.id}>
-              {book.name}
-            </div>
-          )}
-        </div>
-      </header>
-    </div>
-  );
+    <Router>
+      <Routes>
+        <Route exact path="/" element={<Home/>}/>
+        <Route path='/books' exact={true} element={<BookList/>}/>
+      </Routes>
+    </Router>
+  )
 }
 
 export default App;
