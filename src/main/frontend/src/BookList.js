@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Button, ButtonGroup, Container, Table } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import AddWindow from "./AddWindow.js";
 
 const BookList = () => {
 
     const [books, setBooks] = useState([]);
     const [loading, setLoading] = useState(false);
-  
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
     useEffect(() => {
       setLoading(true);
   
@@ -37,7 +38,8 @@ const BookList = () => {
 
   const bookList = books.map(book => {
      return <tr key={book.id}>
-      <td style={{whiteSpace: 'nowrap'}}>{book.name}</td>
+      <td style={{whiteSpace: 'nowrap'}}>{book.id}</td>
+      <td>{book.name}</td>
       <td>{book.author}</td>
       <td>{book.overview}</td>
       <td>
@@ -48,10 +50,16 @@ const BookList = () => {
     </tr>
   });
 
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
   return (
     <div>
       <Container fluid>
         <h3>Book List</h3>
+        <button onClick={openModal}>追加</button>
+        <AddWindow isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
         <Table className="mt-4">
           <thead>
           <tr>

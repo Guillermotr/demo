@@ -14,13 +14,25 @@ public class Book {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public int id;
+	public Integer id;
 
 	public String name;
 	
 	public String author;
 	
 	public String overview;
+	
+	
+	// Default constructor
+    public Book() {
+    }
+
+    public Book(int id, String name, String author, String overview) {
+        this.id = id;
+        this.name = name;
+        this.author = author;
+        this.overview = overview;
+    }
 	
 	
 	

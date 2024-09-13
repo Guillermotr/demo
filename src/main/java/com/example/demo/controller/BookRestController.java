@@ -34,8 +34,7 @@ public class BookRestController {
 	
 	@DeleteMapping("/api/book/delete")
     public ResponseEntity<String> delete(@RequestBody Book book){
-			int id = book.id;
-			Optional<Book> existingBook = bookRepository.findById(id);
+			Optional<Book> existingBook = bookRepository.findById(book.id);
 			if(existingBook.isPresent()){
 				bookRepository.delete(existingBook.get());
 				return ResponseEntity.ok().build();
