@@ -10,9 +10,9 @@ function AddWindow({ isModalOpen, setIsModalOpen }) {
 
   const addBook = async () => {
     const JSONbody = {
-      Name: formData.name,
-      Author: formData.author,
-      Overview: formData.overview
+      name: formData.name,
+      author: formData.author,
+      overview: formData.overview
     };
 
     console.log(JSONbody);

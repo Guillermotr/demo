@@ -9,15 +9,14 @@
     justify-content: center;
     align-items: center;
     z-index: 1000; 
-    
 }
 
 .modal-header-addBook {
     display: flex;
-    justify-content: space-between; /* Aligns items horizontally (distributes space between elements) */
-    align-items: center; /* Vertically centers items */
-    width: 100%; /* Ensure full width of the header */
-    padding: 10px; /* Optional: adjust padding to your liking */
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; 
+    padding: 10px; 
 }
   
 .modal-content-addBook {
@@ -33,7 +32,7 @@
 .modal-form {
     height: 300px;
     text-align: center;
-    margin-top: 30%;
+    margin-top: 20%;
     margin-inline: 10%;
 }
 
@@ -55,7 +54,7 @@
 
 .submit-button {
     align-self: flex-end; 
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 
