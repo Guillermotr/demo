@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, ButtonGroup, Container, Table } from 'reactstrap';
 import AddWindow from "./AddWindow.js";
+import "./App.css";
 
 const BookList = () => {
 
@@ -27,9 +28,13 @@ const BookList = () => {
         'Content-Type': 'application/json'
       }
     }).then(() => {
-      let updatedBooks = [...books].filter(i => i.id !== id);
-      setBooks(updatedBooks);
+      updateBooks(id);
     });
+  }
+
+  const updateBooks = (id) => {
+    let updatedBooks = [...books].filter(i => i.id !== id);
+      setBooks(updatedBooks);
   }
 
   if (loading) {

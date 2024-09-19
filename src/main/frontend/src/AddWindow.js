@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./AddWindow.css"; 
+import "./AddWindow.css";
 
 function AddWindow({ isModalOpen, setIsModalOpen }) {
   const [formData, setFormData] = useState({
@@ -8,10 +8,37 @@ function AddWindow({ isModalOpen, setIsModalOpen }) {
     overview: ""
   });
 
-  const handleSubmit = (e) => {
+  const addBook = async () => {
+    const JSONbody = {
+      Name: formData.name,
+      Author: formData.author,
+      Overview: formData.overview
+    };
+
+    console.log(JSONbody);
+    await fetch(`/api/book/add`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(JSONbody)
+    }).then(response => response.json())
+      .then(data => console.log(data))
+      .catch(error => console.error(error));
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert(`Name: ${formData.name}\nAuthor: ${formData.author}\nOverview: ${formData.overview}`);
-    setIsModalOpen(false); 
+
+    setIsModalOpen(false);
+
+    try {
+      console.log("Add Book");
+      addBook(); // Handle network request after modal closes
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleChange = (e) => {
@@ -23,17 +50,16 @@ function AddWindow({ isModalOpen, setIsModalOpen }) {
 
   return (
     <div>
-      {/* Modal */}
       {isModalOpen && (
-        <div className="modal">
-          <div className="modal-content">
+        <div className="modal-addBook">
+          <div className="modal-content-addBook">
+            <h2 className="modal-header-addBook">書籍の追加</h2>
             <span className="close" onClick={() => setIsModalOpen(false)}>
               &times;
             </span>
-            <h2>Enter Data</h2>
-            <form onSubmit={handleSubmit}>
+            <form className="modal-form" onSubmit={handleSubmit}>
               <label>
-                Name:
+                書籍名
                 <input
                   type="text"
                   name="name"
@@ -44,7 +70,7 @@ function AddWindow({ isModalOpen, setIsModalOpen }) {
               </label>
               <br />
               <label>
-                Author:
+                著者
                 <input
                   type="text"
                   name="author"
@@ -55,7 +81,7 @@ function AddWindow({ isModalOpen, setIsModalOpen }) {
               </label>
               <br />
               <label>
-                Overview:
+                概要
                 <input
                   type="text"
                   name="overview"
@@ -64,7 +90,7 @@ function AddWindow({ isModalOpen, setIsModalOpen }) {
                 />
               </label>
               <br />
-              <input type="submit" value="Submit" />
+              <input className="submit-button" type="submit" value="追加" />
             </form>
           </div>
         </div>
