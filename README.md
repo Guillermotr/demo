@@ -1,1 +1,1 @@
-Just a simple app to try Spring and AWS services
+Just a simple app to try Spring Boot Backend, React Frontend and AWS.
